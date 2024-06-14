@@ -21,7 +21,7 @@
     height: 65px;
     background-color: black;
     box-shadow: 0 0 40px black;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .seccion{
@@ -32,7 +32,7 @@
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 0 10px black;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .form{
@@ -94,9 +94,8 @@
 
 .resultado-visible{
     background-color: rgb(54, 51, 51);
-    height: 50px;
+    height: 150px;
     width: 500px;
-    margin-top: 50px;
     margin: 0 auto;
     border-radius: 20px;
     padding: 20px;
@@ -104,5 +103,11 @@
     color: #fff;
     animation: bounce;
     animation-duration: 5s;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
+.results{
+    font-size: 20px;
+    margin-bottom: 20px;
+}

@@ -34,6 +34,7 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         let parrafo = document.createElement('p');
 
         parrafo.textContent = `Tu indice de masa corporal es ${IMC.toFixed(1)}`
+        parrafo.classList.add('results')
 
         resultado.appendChild(parrafo);
 
@@ -42,9 +43,26 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         resultado.classList.remove('resultado-oculto');
         resultado.classList.add('resultado-visible');
 
-    }
-});
+        let explicacion = document.createElement('p')
+
+        resultado.appendChild(explicacion);
+
+        if(IMC <= 18.5){
+            explicacion.textContent = `La recomendación es ${bajoPeso.recomendacion}`
+        }else if(IMC <= 24.9){
+            explicacion.textContent = `La recomendación es ${buenPeso.recomendacion}`
+        }else if(IMC <= 29.9){
+            explicacion.textContent = `La recomendación es ${buenPeso.recomendacion}`
+        }else if(IMC <= 39.9){
+            explicacion.textContent = `La recomendación es ${Obeso.recomendacion}`
+        }else{
+            explicacion.textContent = `La recomendación es ${obesidadExtrema.recomendacion}`
+        }
+
+        
+}});
 
     import {bajoPeso, buenPeso, sobrePeso, Obeso, obesidadExtrema } from './objects.js';
 
-    console.log(bajoPeso)
+
+    
