@@ -1,18 +1,23 @@
 const body = document.body;
 
+//Título con DOM
 let titulo = document.getElementById('titulo')
 titulo.innerText = "Calculadora de índice de masa corporal (IMC)"
 
+//Clases añadidas con DOM
 titulo.classList.add("titulo")
 header.classList.add("header")
 seccion.classList.add("seccion")
 formulario.classList.add("form")
 
-let resultado = document.getElementById('resultado')
+//Botón de form
 let boton = document.getElementById('boton');
-
 boton.innerText = "CALCULAR"
 
+let historial = document.getElementById('historial')
+
+
+//EVENTOS  formulario
 document.getElementById('formulario').addEventListener('submit', function(event){
     event.preventDefault();
 
@@ -26,17 +31,25 @@ document.getElementById('formulario').addEventListener('submit', function(event)
     }else{
         let IMC = PesoIngresado / (AlturaIngresadaM * AlturaIngresadaM)
 
-        let resultado = document.getElementById('resultadoIMC');
+        //Session storage
+        sessionStorage.setItem("ResultadoHistorial", IMC);
 
+        let resultado = document.getElementById('resultadoIMC');
         resultado.innerHTML = ' ';
 
+        if (isNaN(IMC)) {
+            alert('Por favor, ingrese un numero válido');
+            return;
+        }
+        if(IMC > 150 || IMC <= 0){
+            alert('Ingrese datos válido');
+            explicacion.textContent = '';
+        }
+        //Respuesta
         let parrafo = document.createElement('p');
-
         parrafo.textContent = `Tu indice de masa corporal es ${IMC.toFixed(1)}`
         parrafo.classList.add('results')
-
         resultado.appendChild(parrafo);
-
         this.reset();
 
         resultado.classList.remove('resultado-oculto');
@@ -46,16 +59,18 @@ document.getElementById('formulario').addEventListener('submit', function(event)
 
         resultado.appendChild(explicacion);
 
-
+        //IMPLEMENTACION DE TERNARIOS.
         explicacion.textContent = 
         (IMC <= 18.5) ? `La recomendación es ${bajoPeso.recomendacion}` : 
         (IMC > 18.5 && IMC <= 24.9) ? `Está en un buen peso, ${buenPeso.recomendacion}` :
         (IMC > 24.9 && IMC <= 29.9) ? `${sobrePeso.recomendacion}` :
         (IMC > 29.9 && IMC <= 39.9) ? `Es escencial ${Obeso.recomendacion}` : 
-        (IMC > 39.9 && IMC <= 150) ? `${obesidadExtrema.recomendacion}` : 
-        (alert('Ingrese datos validos'), explicacion.textContent);
+        (IMC > 39.9 && IMC <= 150) ? `${obesidadExtrema.recomendacion}` : '';
 
-/*  if(IMC <= 18.5){
+
+}});
+
+/*      if(IMC <= 18.5){
             explicacion.textContent = `La recomendación es ${bajoPeso.recomendacion}`
         }else if(IMC >= 18.5 && edad <= 24.9){
             explicacion.textContent = `Está en un buen peso, ${buenPeso.recomendacion}`
@@ -67,9 +82,8 @@ document.getElementById('formulario').addEventListener('submit', function(event)
             explicacion.textContent = `${obesidadExtrema.recomendacion}`
         }else {
             alert('Ingrese datos validos')
-        }  */
-}});
-
+        }  
+*/
     import {bajoPeso, buenPeso, sobrePeso, Obeso, obesidadExtrema } from './objects.js';
 
 
