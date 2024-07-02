@@ -31,9 +31,6 @@ document.getElementById('formulario').addEventListener('submit', function(event)
     }else{
         let IMC = PesoIngresado / (AlturaIngresadaM * AlturaIngresadaM)
 
-        //Session storage
-        sessionStorage.setItem("ResultadoHistorial", IMC);
-
         let resultado = document.getElementById('resultadoIMC');
         resultado.innerHTML = ' ';
 
@@ -58,6 +55,18 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         let explicacion = document.createElement('p')
 
         resultado.appendChild(explicacion);
+
+        //Session storage
+        sessionStorage.setItem("ResultadoHistorial", IMC.toFixed(1));
+
+        let ImcAlmacenado = sessionStorage.getItem("ResultadoHistorial")
+
+        if(ImcAlmacenado){
+            let historialIMC = document.getElementById('historial');
+            historial.innerHTML = `Tu último IMC calculado fue ${ImcAlmacenado}`
+            historial.classList.remove('resultado-oculto');
+            historial.classList.add('resultado-visible');
+        }
 
         //IMPLEMENTACION DE TERNARIOS.
         explicacion.textContent = 
